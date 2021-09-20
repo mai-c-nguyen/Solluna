@@ -1,6 +1,6 @@
-import { createContext } from "react";
+import { createContext} from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue} from "firebase/database";
+import { getDatabase, ref, onValue, child, get} from "firebase/database";
 
 const FirebaseContext = createContext(null);
 export { FirebaseContext };
@@ -18,40 +18,47 @@ const FirebaseProvider = ({ children }) => {
   };
 
   const app = initializeApp(firebaseConfig);
-  const database = getDatabase(app);
-
-  // const getProducts = async () => {
-  //   const productsSnapshot = await getDocs(collection(database, "products"));
-  //   const productsData = [];
-
-  //   productsSnapshot.forEach((productSnapshot) => {
-  //     productsData.push(productSnapshot.data());
-  //   });
-
-  //   return productsData;
-  // };
-
-  // const getProduct = async (id) => {
-  //   // do stuff
-  // }
+  const database = getDatabase(app)
 
 
-const getProducts = () => {
-  const productsRef = ref(database, 'products');
-  const productsData = [];
-  onValue(productsRef, (snapshot) => {
-  const data = snapshot.val();
-    data.map(product => productsData.push(product));
-  });
-  return productsData;
-};
+  const getProducts = () => {
+    const productsRef = ref(database, 'products');
+    const productsData = [];
+    onValue(productsRef, (snapshot) => {
+      const data = snapshot.val();
+      data.map(product => productsData.push(product));
+    });
+    return productsData;
+  };
+
+  const getProduct = (id) => {
+    // const databaseRef = ref(getDatabase());
+    // const product = {};
+    // get(child(databaseRef, `products/${id}`)).then((snapshot) => {
+    //   if (snapshot.exists()) {
+    //     const data = snapshot.val();
+    //     return Object.assign(product, data);
+    //     };
+    //   });
+    // return product;
+
+      const productRef = ref(database, 'products/' + id);
+      const product = {};
+      onValue(productRef, (snapshot) => {
+        const data = snapshot.val();
+        return Object.assign(product, data);
+       })
+      return product;
+      console.log(product);
+    }
 
 
   const firebase = {
     app,
     database,
     api: {
-      getProducts
+      getProducts,
+      getProduct
     },
   };
 

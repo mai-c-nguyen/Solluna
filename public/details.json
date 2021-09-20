@@ -10,7 +10,7 @@
       },
       "price": 5,
       "price_id": "price_1HxVriGuhXEITAutt5KUKo2V",
-      "storage": "Store in the cool place"
+      "servings": "Approximately 50 servings"
     },
     {
       "description": "100 gr green tea bag",
@@ -22,7 +22,7 @@
       },
       "price": 4.5,
       "price_id": "price_1HxW4YGuhXEITAutgcWugXH7",
-      "storage": "Store in the cool place"
+      "servings": "Approximately 50 servings"
     }
   ]
 }

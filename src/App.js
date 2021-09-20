@@ -4,9 +4,7 @@ import Home from "./components/Home.js";
 import About from "./components/About.js";
 import Products from "./components/Products.js";
 import Cart from "./components/Cart.js";
-import { useEffect, useState } from "react";
-
-
+import ProductDetails from "./components/ProductDetails.js";
 
 function App() {
 
@@ -23,6 +21,9 @@ return (
           </Route>
           <Route exact path="/products">
             <Products />
+          </Route>
+          <Route exact path="/products/:id">
+            <ProductDetails />
           </Route>
           <Route exact path="/cart">
             <Cart />

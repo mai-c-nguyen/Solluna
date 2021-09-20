@@ -14,8 +14,6 @@ export default function Products() {
     const productsData = getProducts();
     setProducts(productsData);
   },[]);
-console.log(products);
-
 
   return <>
     <div class="products-layout">

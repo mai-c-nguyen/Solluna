@@ -1,18 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext} from "react";
 import { Switch, NavLink, Route, useParams, useRouteMatch } from "react-router-dom";
+import Product from "./Product.js";
+import { FirebaseContext } from "../libraries/firebase";
 
-export default ProductDetails(props) {
-    const [product, setProduct] = useState({});
-    const params = useParams();
-    const match = useRouteMatch();
+export default function ProductDetails(props) {
+  const [product, setProduct] = useState({});
+  const params = useParams();
+  const match = useRouteMatch();
+  console.log(match);
 
-    // useEffect
+  const {
+    api: { getProduct },
+  } = useContext(FirebaseContext);
+
+  useEffect(() => {
+    const product = getProduct(params.id);
+    setProduct(product);
+  },{});
+  console.log(product);
 
     return <>
       <div class="product-details-layout">
         <div>
-          <h2>Product name here</h2>
-          <img width="125" height="125" class="product-details-image" alt="product name here"
+          <h2>{product.name}</h2>
+          <img src={product.image} width="125" height="125" class="product-details-image" alt={product.name}
           />
         </div>
         <div>
@@ -22,10 +33,10 @@ export default ProductDetails(props) {
                 <a class="tab-active">Details</a>
               </li>
               <li>
-                <a>Nutrition</a>
+                <a>Ingredients</a>
               </li>
               <li>
-                <a>Storage</a>
+                <a>Servings</a>
               </li>
             </ul>
           </div>
