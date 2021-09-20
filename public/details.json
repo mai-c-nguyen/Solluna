@@ -1,0 +1,28 @@
+{
+  "products": [{
+      "description": "100gr rose tea bag",
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1597481499666-130f8eb2c9cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+      "name": "Rose Tea",
+      "ingredients": {
+        "tea leaf": "70%",
+        "rose": "30%"
+      },
+      "price": 5,
+      "price_id": "price_1HxVriGuhXEITAutt5KUKo2V",
+      "storage": "Store in the cool place"
+    },
+    {
+      "description": "100 gr green tea bag",
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1531877038798-51499a9eedf0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "name": "Green Tea",
+      "ingredients": {
+        "tea leaf": "100%"
+      },
+      "price": 4.5,
+      "price_id": "price_1HxW4YGuhXEITAutgcWugXH7",
+      "storage": "Store in the cool place"
+    }
+  ]
+}

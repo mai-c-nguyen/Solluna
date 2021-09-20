@@ -1,0 +1,17 @@
+[{
+  "description": "100gr rose tea bag",
+  "id": 1,
+  "image": "https://images.unsplash.com/photo-1536677813196-8fed27bcecdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
+  "name": "Rose Tea",
+  "price": 5,
+  "price_id": "price_1HxVriGuhXEITAutt5KUKo2V"
+},
+{
+  "description": "100gr green tea bag",
+  "id": 2,
+  "image": "https://images.unsplash.com/photo-1602020277972-99978250c8bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+  "name": "Green Tea",
+  "price": 4.5,
+  "price_id": "price_1HxW4YGuhXEITAutgcWugXH7"
+}
+]
