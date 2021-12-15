@@ -7,14 +7,14 @@ export { FirebaseContext };
 
 const FirebaseProvider = ({ children }) => {
   const firebaseConfig = {
-    apiKey: "AIzaSyBpWUqODeGoYz20vhtfOzzmmPzQXUCbl34",
-    authDomain: "solluna-70b12.firebaseapp.com",
-    databaseURL: "https://solluna-70b12-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "solluna-70b12",
-    storageBucket: "solluna-70b12.appspot.com",
-    messagingSenderId: "252416967080",
-    appId: "1:252416967080:web:75b2b3e3d225cf80e1dd9d",
-    measurementId: "G-THD5MLRPD7"
+    apiKey: "AIzaSyDg80zYL696LS7oMVCE2PWIlfIcjXmXN5k",
+    authDomain: "solluna-tea.firebaseapp.com",
+    databaseURL: "https://solluna-tea-default-rtdb.firebaseio.com",
+    projectId: "solluna-tea",
+    storageBucket: "solluna-tea.appspot.com",
+    messagingSenderId: "148765635019",
+    appId: "1:148765635019:web:425506586474ab1c23c64e",
+    measurementId: "G-S3HJ953Y39"
   };
 
   const app = initializeApp(firebaseConfig);
