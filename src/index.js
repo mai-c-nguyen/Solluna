@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import FirebaseProvider from './libraries/firebase'
+import FirebaseProvider from './libraries/firebase';
+
 
 
 ReactDOM.render(

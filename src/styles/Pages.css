@@ -1,0 +1,30 @@
+/* Pages */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  place-items: center;
+  grid-gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.products-layout {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.product-details-layout {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 40px;
+}

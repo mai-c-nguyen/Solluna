@@ -1,18 +1,19 @@
-
+import React from 'react';
 import clsx from "clsx";
 
-function Button(props) {
-const {outline, children, className, ...rest} = props;
-
-const classNames = clsx({
-  btn: true,
-  "btn-outline": outline,
-  "btn-default": !outline
-}, className);
-
-return (
-  <button className={classNames} {...rest}>{props.children}</button>
-  )
+export default function Button(props) {
+    console.log(props);
+    const {outline, children, className, ...rest} = props;
+    const classes = clsx({
+        btn: true,
+        "btn-outline": outline,
+        "btn-default": !outline
+        }, className
+        );
+        console.log(classes);
+    return (
+      <button className={classes} {...rest}>
+      {children}
+      </button>
+    );
 }
-
-export default Button;

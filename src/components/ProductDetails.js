@@ -1,25 +1,27 @@
-import { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Switch, NavLink, Route, useParams, useRouteMatch } from "react-router-dom";
 import Product from "./Product.js";
 import { FirebaseContext } from "../libraries/firebase";
+import ProductDetailInfo from "./ProductDetailInfo.js";
+import ProductDetailIngredients from "./ProductDetailIngredients.js";
+import ProductDetailServings from "./ProductDetailServings.js";
+
 
 export default function ProductDetails(props) {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const params = useParams();
   const match = useRouteMatch();
-  console.log(match);
 
   const {
     api: { getProduct },
   } = useContext(FirebaseContext);
 
-  useEffect(() => {
-    const product = getProduct(params.id);
+  useEffect(async () => {
+    const product = await getProduct(params.id);
     setProduct(product);
-  },{});
-  console.log(product);
+  },[]);
 
-    return <>
+    return (
       <div class="product-details-layout">
         <div>
           <h2>{product.name}</h2>
@@ -27,21 +29,43 @@ export default function ProductDetails(props) {
           />
         </div>
         <div>
-          <div class="tabs">
-            <ul>
-              <li>
-                <a class="tab-active">Details</a>
-              </li>
-              <li>
-                <a>Ingredients</a>
-              </li>
-              <li>
-                <a>Servings</a>
-              </li>
-            </ul>
-          </div>
+        <div className="tabs">
+          <ul>
+            <li>
+              <NavLink exact activeClassName="tab-active" to={match.url}>
+                Details
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact activeClassName="tab-active" to={match.url + "/ingredients"}>
+              Ingredients
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact activeClassName="tab-active" to={match.url + "/servings"}>
+                Servings
+              </NavLink>
+            </li>
+          </ul>
         </div>
+        <Switch>
+          <Route exact path={match.path}>
+            <ProductDetailInfo
+              onProductAdd={props.onProductAdd}
+              product={product}
+            />
+          </Route>
+
+          <Route path={match.path + "/ingredients"}>
+          <ProductDetailIngredients />
+          </Route>
+
+          <Route path={match.path + "/servings"}>
+            <ProductDetailServings servings={product.servings} />
+          </Route>
+        </Switch>
       </div>
-    </>
+    </div>
+  );
 
 }

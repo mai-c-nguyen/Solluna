@@ -1,6 +1,6 @@
-import { createContext} from "react";
+import React, { createContext} from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, child, get} from "firebase/database";
+import { getDatabase, ref, onValue} from "firebase/database";
 
 const FirebaseContext = createContext(null);
 export { FirebaseContext };
@@ -21,36 +21,33 @@ const FirebaseProvider = ({ children }) => {
   const database = getDatabase(app)
 
 
-  const getProducts = () => {
-    const productsRef = ref(database, 'products');
-    const productsData = [];
-    onValue(productsRef, (snapshot) => {
-      const data = snapshot.val();
-      data.map(product => productsData.push(product));
-    });
-    return productsData;
+  const getProducts = async () => {
+    return new Promise((resolve, reject) => {
+      const productsRef = ref(database, 'products');
+      onValue(productsRef, (snapshot) => {
+        resolve(snapshot.val());
+      });
+    })
   };
 
-  const getProduct = (id) => {
-    // const databaseRef = ref(getDatabase());
-    // const product = {};
-    // get(child(databaseRef, `products/${id}`)).then((snapshot) => {
-    //   if (snapshot.exists()) {
-    //     const data = snapshot.val();
-    //     return Object.assign(product, data);
-    //     };
-    //   });
-    // return product;
-
+  const getProduct = async (id) => {
+    return new Promise((resolve, reject) => {
       const productRef = ref(database, 'products/' + id);
-      const product = {};
       onValue(productRef, (snapshot) => {
-        const data = snapshot.val();
-        return Object.assign(product, data);
+        resolve(Object.assign({}, snapshot.val()));
        })
-      return product;
-      console.log(product);
-    }
+    })
+  }
+
+  const getIngredients= async (id) => {
+    return new Promise((resolve, reject) => {
+      const ingredientsRef = ref(database, 'products/' + id + "/ingredients");
+      onValue(ingredientsRef, (snapshot) => {
+        resolve(Object.assign({}, snapshot.val()));
+       })
+    })
+  }
+
 
 
   const firebase = {
@@ -58,7 +55,8 @@ const FirebaseProvider = ({ children }) => {
     database,
     api: {
       getProducts,
-      getProduct
+      getProduct,
+      getIngredients
     },
   };
 

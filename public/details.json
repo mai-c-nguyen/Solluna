@@ -1,27 +1,50 @@
 {
   "products": [{
-      "description": "100gr rose tea bag",
-      "id": 1,
-      "image": "https://images.unsplash.com/photo-1597481499666-130f8eb2c9cd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-      "name": "Rose Tea",
+      "description": "100gr/bag",
+      "id": 0,
+      "image": "https://images.unsplash.com/photo-1627894006066-b45786537103?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1517&q=80",
+      "name": "Hugged Mountain",
       "ingredients": {
-        "tea leaf": "70%",
-        "rose": "30%"
+        "tea": "70%"
       },
-      "price": 5,
+      "price": 10,
+      "price_id": "price_1HuavSGuhXEITAut56IgndJf",
+      "servings": "Approximately 50 servings"
+    },
+    {
+      "description": "100gr/bag",
+      "id": 1,
+      "image": "https://images.pexels.com/photos/39347/tea-farmhouse-hand-fresh-39347.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "name": "Mountain Stream",
+      "ingredients": {
+        "tea": "100%"
+      },
+      "price": 15,
       "price_id": "price_1HxVriGuhXEITAutt5KUKo2V",
       "servings": "Approximately 50 servings"
     },
     {
-      "description": "100 gr green tea bag",
+      "description": "100gr/bag",
       "id": 2,
-      "image": "https://images.unsplash.com/photo-1531877038798-51499a9eedf0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      "name": "Green Tea",
+      "image": "https://images.unsplash.com/photo-1563911892317-47551470aed8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+      "name": "Virgin Silver",
       "ingredients": {
-        "tea leaf": "100%"
+        "tea": "100%"
       },
-      "price": 4.5,
+      "price": 20,
       "price_id": "price_1HxW4YGuhXEITAutgcWugXH7",
+      "servings": "Approximately 50 servings"
+    },
+    {
+      "description": "100gr/bag",
+      "id": 3,
+      "image": "https://images.unsplash.com/photo-1608036586781-26f0d5debbee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80",
+      "name": "Pink Lady",
+      "ingredients": {
+        "tea": "100%"
+      },
+      "price": 20,
+      "price_id": "price_1HxW59GuhXEITAutCwoYZoOJ",
       "servings": "Approximately 50 servings"
     }
   ]

@@ -1,11 +1,14 @@
+import React from 'react';
 import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({cart}) {
+
+  const cartCount = cart.reduce((accum, current) => accum + current.quantity, 0)
 
   return (
     <nav className="navbar">
       <NavLink to="/" className="nav-brand">
-        Solluna
+        solluna
       </NavLink>
       <ul>
         <li className="nav-item">
@@ -24,7 +27,7 @@ export default function Navbar() {
         </li>
         <li className="nav-item">
           <NavLink to="/cart" activeClassName="active">
-            Cart(0)
+            Cart({cartCount})
           </NavLink>
         </li>
         </li>

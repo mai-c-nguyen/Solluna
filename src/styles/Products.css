@@ -1,0 +1,31 @@
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:  25px;
+}
+/*.product {
+  margin-bottom: 30px;
+  flex-grow: 1
+}
+*/
+.product-card {
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+img {
+  width: 285px;
+  height:  300px;
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+
+.product-card .product-info {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
