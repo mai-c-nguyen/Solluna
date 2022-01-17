@@ -6,17 +6,17 @@ const FirebaseContext = createContext(null);
 export { FirebaseContext };
 
 const FirebaseProvider = ({ children }) => {
-  const firebaseConfig = {
-    apiKey: "AIzaSyDg80zYL696LS7oMVCE2PWIlfIcjXmXN5k",
-    authDomain: "solluna-tea.firebaseapp.com",
-    databaseURL: "https://solluna-tea-default-rtdb.firebaseio.com",
-    projectId: "solluna-tea",
-    storageBucket: "solluna-tea.appspot.com",
-    messagingSenderId: "148765635019",
-    appId: "1:148765635019:web:425506586474ab1c23c64e",
-    measurementId: "G-S3HJ953Y39"
-  };
 
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMwPUT-ny5kC97wycxk7ITMSJEwY7y7ps",
+    authDomain: "solluna-tea-shop.firebaseapp.com",
+    projectId: "solluna-tea-shop",
+    storageBucket: "solluna-tea-shop.appspot.com",
+    messagingSenderId: "647585699523",
+    appId: "1:647585699523:web:e50aeed12714ff2d2f7476",
+    measurementId: "G-5P1C6GV79Y"
+  };
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app)
 

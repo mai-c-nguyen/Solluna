@@ -25,7 +25,7 @@ export default function ProductDetails(props) {
       <div class="product-details-layout">
         <div>
           <h2>{product.name}</h2>
-          <img src={product.image} width="125" height="125" class="product-details-image" alt={product.name}
+          <img src={product.image} class="product-image" alt={product.name}
           />
         </div>
         <div>

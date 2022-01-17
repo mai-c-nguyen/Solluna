@@ -66,7 +66,7 @@
   border-radius: 10px;
 }
 .btn-delete, .btn-increment, .btn-decrement {
-  padding: 0;
+  padding: 10px;
   border: none;
   background: none;
 }

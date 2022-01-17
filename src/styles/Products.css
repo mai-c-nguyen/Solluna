@@ -11,10 +11,10 @@
 .product-card {
   overflow: hidden;
   border-radius: 6px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+/*  box-shadow: 0 0 15px rgba(0,0,0,0.2)*/;
 }
 
-img {
+.product-image {
   width: 285px;
   height:  300px;
   object-fit: cover;
@@ -24,8 +24,15 @@ img {
 
 
 .product-card .product-info {
-  padding: 16px;
+  padding: 0 16px 16px;
   display: flex;
   justify-content: space-between;
   position: relative;
 }
+
+
+.product-name, .product-price, .product-description {
+  margin-top:  3px;
+  margin-bottom: 0;
+}
+

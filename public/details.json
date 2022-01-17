@@ -1,6 +1,6 @@
 {
   "products": [{
-      "description": "100gr/bag",
+      "description": "50gr/bag",
       "id": 0,
       "image": "https://images.unsplash.com/photo-1627894006066-b45786537103?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1517&q=80",
       "name": "Hugged Mountain",
@@ -9,7 +9,7 @@
       },
       "price": 10,
       "price_id": "price_1HuavSGuhXEITAut56IgndJf",
-      "servings": "Approximately 50 servings"
+      "servings": "Approximately 25 servings"
     },
     {
       "description": "100gr/bag",
@@ -26,25 +26,49 @@
     {
       "description": "100gr/bag",
       "id": 2,
-      "image": "https://images.unsplash.com/photo-1563911892317-47551470aed8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-      "name": "Virgin Silver",
+      "image": "https://media.istockphoto.com/photos/large-variety-of-multi-colored-dried-tea-leaves-and-flowers-on-the-picture-id1277145238?s=612x612",
+      "name": "Spices Booster",
       "ingredients": {
         "tea": "100%"
       },
       "price": 20,
-      "price_id": "price_1HxW4YGuhXEITAutgcWugXH7",
+      "price_id": "price_1HxW59GuhXEITAutCwoYZoOF",
       "servings": "Approximately 50 servings"
     },
     {
-      "description": "100gr/bag",
+      "description": "150gr/bag",
       "id": 3,
       "image": "https://images.unsplash.com/photo-1608036586781-26f0d5debbee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80",
-      "name": "Pink Lady",
+      "name": "Twilight Moon",
       "ingredients": {
         "tea": "100%"
       },
-      "price": 20,
+      "price": 25,
       "price_id": "price_1HxW59GuhXEITAutCwoYZoOJ",
+      "servings": "Approximately 150 servings"
+    },
+    {
+      "description": "50gr/bag",
+      "id": 4,
+      "image": "https://images.unsplash.com/photo-1596344084757-b83f2081da8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=385&q=80",
+      "name": "Flower Booster",
+      "ingredients": {
+        "tea": "100%"
+      },
+      "price": 30,
+      "price_id": "price_1HxW59GuhXEITAutCwoYZoOK",
+      "servings": "Approximately 50 servings"
+    },
+    {
+      "description": "150gr/bag",
+      "id": 5,
+      "image": "https://images.unsplash.com/photo-1597620141633-81170e16af34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80",
+      "name": "Wood Incense",
+      "ingredients": {
+        "tea": "100%"
+      },
+      "price": 35,
+      "price_id": "price_1HxW59GuhXEITAutCwoYZoOQ",
       "servings": "Approximately 50 servings"
     }
   ]

@@ -9,7 +9,22 @@ import Cart from "./components/Cart.js";
 import ProductDetails from "./components/ProductDetails.js";
 
 function App() {
-  const [cart, setCart] = useState([]);
+
+  const [cart, setCart] = React.useState(function() {
+    let savedCart = []
+    try {
+      savedCart = JSON.parse(localStorage.getItem("cart"))
+    } catch {
+      console.warn('Could not parse the cart')
+    }
+    return savedCart;
+  });
+
+    useEffect(() => {
+    if (cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
 
   function handleProductDelete(id) {
@@ -22,6 +37,7 @@ function App() {
     const existingProduct = cart.find(
       (product) => product.id === newProduct.id
     );
+
     if (existingProduct) {
       // increase quantity
       const updatedCart = cart.map((product) => {
@@ -43,8 +59,12 @@ function App() {
           quantity: 1,
         },
       ]);
+
     }
+
   }
+
+
 
   function handleProductIncrement(product) {
     const exist = cart.find((cartItem) => cartItem.id === product.id);
@@ -68,6 +88,11 @@ function App() {
       );
     }
   }
+
+
+
+
+
 return (
     <BrowserRouter>
       <Navbar cart={cart} />
