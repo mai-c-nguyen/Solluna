@@ -5,15 +5,17 @@ import { faTrashAlt, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import Button from "./Button.js";
 import Input from "./Input.js";
 
-export default function Cart({ cart, onProductDelete, onProductIncrement, onProductDecrement }) {
-
-  const stripeLoadedPromise = loadStripe(
-  "sk_test_51KI4hxCXE800BuZn3MRfsR0sIc9rqoBWG4zdoMRW6N1AWkDlxy46pDx5oR8YDqIDru81AdylPo516wjxozOitdkK00hwcRxZ3H"
+const stripeLoadedPromise = loadStripe(
+  "pk_test_51KI4hxCXE800BuZnrEocZLle7ruZH8akqVka3cg9ZNCR4LkvJUmnRzn4DyazXFQfeJOf6i4IbVOQB7Qt0Qp0G4Wt007vTmw14k"
 );
 
-  const totalCart = cart.reduce((accum, current) => accum + current.price * current.quantity, 0);
-  const totalItems = cart.reduce((accum, current) => accum + current.quantity, 0);
 
+export default function Cart({ cart = [], onProductDelete, onProductIncrement, onProductDecrement }) {
+
+
+  const totalCart = Array.isArray(cart) ? cart.reduce((accum, current) => accum + current.price * current.quantity, 0) : 0;
+  const totalItems = Array.isArray(cart) ? cart.reduce((accum, current) => accum + current.quantity, 0) : 0;
+  console.log('cart?', cart)
   function handleClick(event) {
     console.log("checkout")
 
@@ -45,9 +47,9 @@ export default function Cart({ cart, onProductDelete, onProductIncrement, onProd
     <div>
       <h2>Your Cart ({totalItems})</h2>
 
-      {cart.length === 0 && (<p>No tea has been added yet</p>)}
+      {Array.isArray(cart) && cart.length === 0 && (<p>No tea has been added yet</p>)}
       <div className="cart-layout">
-      {cart.length > 0 && (cart.map(product => {
+      {Array.isArray(cart) && cart.length > 0 && (cart.map(product => {
         return (
           <div class="cart-items">
             <div class="image-box">
@@ -69,7 +71,7 @@ export default function Cart({ cart, onProductDelete, onProductIncrement, onProd
           </div>
         )
       }))}
-      {cart.length === 0 || (
+      {Array.isArray(cart) && cart.length === 0 || (
         <div className="cart-checkout">
           <hr></hr>
           <div class="checkout">

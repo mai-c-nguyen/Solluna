@@ -17,7 +17,8 @@ function App() {
     } catch {
       console.warn('Could not parse the cart')
     }
-    return savedCart;
+    console.log('savedCArt?', savedCart)
+    return savedCart || [];
   });
 
     useEffect(() => {
@@ -25,6 +26,8 @@ function App() {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
+
+    console.log('cart in app', cart)
 
 
   function handleProductDelete(id) {

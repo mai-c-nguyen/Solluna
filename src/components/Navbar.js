@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar({cart}) {
 
-  const cartCount = cart.reduce((accum, current) => accum + current.quantity, 0)
+  const cartCount =  Array.isArray(cart) ? cart.reduce((accum, current) => accum + current.quantity, 0) : 0
 
   return (
     <nav className="navbar">
