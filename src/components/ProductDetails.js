@@ -27,7 +27,7 @@ export default function ProductDetails(props) {
     };
 
     fetchData();
-  }, []);
+  }, [getProduct, params.id]);
 
   return (
     <div class="product-details-layout">

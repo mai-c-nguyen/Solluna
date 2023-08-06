@@ -16,7 +16,7 @@ export default function ProductDetailIngredients() {
       setIngredients(ingredients);
     };
     fetchData();
-  }, []);
+  }, [getIngredients, params.id]);
 
   console.log(ingredients);
   return (

@@ -14,7 +14,7 @@ export default function Products() {
       setProducts(products);
     };
     fetchData();
-  }, []);
+  }, [getProducts]);
 
   console.log(products);
   return (
