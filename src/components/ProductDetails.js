@@ -1,11 +1,15 @@
-import React, { useState, useEffect, useContext} from "react";
-import { Switch, NavLink, Route, useParams, useRouteMatch } from "react-router-dom";
-import Product from "./Product.js";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  Switch,
+  NavLink,
+  Route,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import { FirebaseContext } from "../libraries/firebase";
 import ProductDetailInfo from "./ProductDetailInfo.js";
 import ProductDetailIngredients from "./ProductDetailIngredients.js";
 import ProductDetailServings from "./ProductDetailServings.js";
-
 
 export default function ProductDetails(props) {
   const [product, setProduct] = useState([]);
@@ -16,19 +20,22 @@ export default function ProductDetails(props) {
     api: { getProduct },
   } = useContext(FirebaseContext);
 
-  useEffect(async () => {
-    const product = await getProduct(params.id);
-    setProduct(product);
-  },[]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const product = await getProduct(params.id);
+      setProduct(product);
+    };
 
-    return (
-      <div class="product-details-layout">
-        <div>
-          <h2>{product.name}</h2>
-          <img src={product.image} class="product-image" alt={product.name}
-          />
-        </div>
-        <div>
+    fetchData();
+  }, []);
+
+  return (
+    <div class="product-details-layout">
+      <div>
+        <h2>{product.name}</h2>
+        <img src={product.image} class="product-image" alt={product.name} />
+      </div>
+      <div>
         <div className="tabs">
           <ul>
             <li>
@@ -37,12 +44,20 @@ export default function ProductDetails(props) {
               </NavLink>
             </li>
             <li>
-              <NavLink exact activeClassName="tab-active" to={match.url + "/ingredients"}>
-              Ingredients
+              <NavLink
+                exact
+                activeClassName="tab-active"
+                to={match.url + "/ingredients"}
+              >
+                Ingredients
               </NavLink>
             </li>
             <li>
-              <NavLink exact activeClassName="tab-active" to={match.url + "/servings"}>
+              <NavLink
+                exact
+                activeClassName="tab-active"
+                to={match.url + "/servings"}
+              >
                 Servings
               </NavLink>
             </li>
@@ -57,7 +72,7 @@ export default function ProductDetails(props) {
           </Route>
 
           <Route path={match.path + "/ingredients"}>
-          <ProductDetailIngredients />
+            <ProductDetailIngredients />
           </Route>
 
           <Route path={match.path + "/servings"}>
@@ -67,5 +82,4 @@ export default function ProductDetails(props) {
       </div>
     </div>
   );
-
 }

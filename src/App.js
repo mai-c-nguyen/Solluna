@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { render } from "react-dom";
+import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.js";
 import Home from "./components/Home.js";
@@ -9,26 +8,24 @@ import Cart from "./components/Cart.js";
 import ProductDetails from "./components/ProductDetails.js";
 
 function App() {
-
-  const [cart, setCart] = React.useState(function() {
-    let savedCart = []
+  const [cart, setCart] = React.useState(function () {
+    let savedCart = [];
     try {
-      savedCart = JSON.parse(localStorage.getItem("cart"))
+      savedCart = JSON.parse(localStorage.getItem("cart"));
     } catch {
-      console.warn('Could not parse the cart')
+      console.warn("Could not parse the cart");
     }
-    console.log('savedCArt?', savedCart)
+    console.log("savedCArt?", savedCart);
     return savedCart || [];
   });
 
-    useEffect(() => {
+  useEffect(() => {
     if (cart) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
 
-    console.log('cart in app', cart)
-
+  console.log("cart in app", cart);
 
   function handleProductDelete(id) {
     const updatedCart = cart.filter((product) => product.id !== id);
@@ -62,19 +59,17 @@ function App() {
           quantity: 1,
         },
       ]);
-
     }
-
   }
-
-
 
   function handleProductIncrement(product) {
     const exist = cart.find((cartItem) => cartItem.id === product.id);
     if (exist) {
       setCart(
         cart.map((cartItem) =>
-          cartItem.id === product.id ? { ...exist, quantity: exist.quantity + 1 } : cartItem
+          cartItem.id === product.id
+            ? { ...exist, quantity: exist.quantity + 1 }
+            : cartItem
         )
       );
     } else {
@@ -84,19 +79,18 @@ function App() {
 
   function handleProductDecrement(product) {
     const exist = cart.find((cartItem) => cartItem.id === product.id);
-    if(exist.quantity > 0) {
-      setCart(cart.map((cartItem) =>
-        cartItem.id === product.id ? {...exist, quantity: exist.quantity - 1} : cartItem
+    if (exist.quantity > 0) {
+      setCart(
+        cart.map((cartItem) =>
+          cartItem.id === product.id
+            ? { ...exist, quantity: exist.quantity - 1 }
+            : cartItem
         )
       );
     }
   }
 
-
-
-
-
-return (
+  return (
     <BrowserRouter>
       <Navbar cart={cart} />
       <div className="container">
@@ -125,6 +119,6 @@ return (
       </div>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

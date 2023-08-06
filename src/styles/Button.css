@@ -13,6 +13,7 @@
 .btn-default {
   color: var(--white);
   background-color: var(--primary-1);
+  border-radius: 28px;
 }
 
 .btn-default:hover,
@@ -64,16 +65,18 @@
   box-shadow: 1px 1px 7px #c4c4c4;
   padding: 8px 25px;
   border-radius: 10px;
+  border-radius: 28px;
 }
-.btn-delete, .btn-increment, .btn-decrement {
+.btn-delete,
+.btn-increment,
+.btn-decrement {
   padding: 10px;
   border: none;
   background: none;
 }
 .btn-decrement {
-  padding-right:  20px;
-
+  padding-right: 20px;
 }
 .btn-increment {
-  padding-left:  20px;
+  padding-left: 20px;
 }
