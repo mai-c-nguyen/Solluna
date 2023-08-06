@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.1.10",
     "clsx": "^1.1.1",
     "firebase": "^9.6.1",
+    "firebase-admin": "^11.10.1",
     "firebase-functions": "^4.4.1",
     "js-levenshtein": "^1.1.6",
     "react": "^17.0.2",
@@ -54,5 +55,9 @@
   },
   "devDependencies": {
     "parcel": "^2.0.0-rc.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/mai-c-nguyen/Solluna.git",
+  "author": "Mai Nguyen <mai.nguyen.gl@gmail.com>",
+  "license": "MIT"
 }
