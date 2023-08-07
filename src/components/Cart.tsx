@@ -2,17 +2,29 @@ import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { IProduct } from "../interfaces/IProduct";
+import { IIngredient } from "../interfaces/IIngredient";
 
+export interface IProductInCart extends IProduct {
+  quantity: number;
+}
+
+interface ICart {
+  cart: IProductInCart[];
+  onProductDelete: (id: string) => void;
+  onProductIncrement: (product: IProductInCart) => void;
+  onProductDecrement: (product: IProductInCart) => void;
+}
 const stripeLoadedPromise = loadStripe(
   "pk_test_51KI4hxCXE800BuZnrEocZLle7ruZH8akqVka3cg9ZNCR4LkvJUmnRzn4DyazXFQfeJOf6i4IbVOQB7Qt0Qp0G4Wt007vTmw14k"
 );
 
-export default function Cart({
+const Cart = ({
   cart = [],
   onProductDelete,
   onProductIncrement,
   onProductDecrement,
-}) {
+}: ICart) => {
   const totalCart = Array.isArray(cart)
     ? cart.reduce(
         (accum, current) => accum + current.price * current.quantity,
@@ -23,12 +35,12 @@ export default function Cart({
     ? cart.reduce((accum, current) => accum + current.quantity, 0)
     : 0;
 
-  function handleClick(event) {
+  const handleClick = () => {
     const lineItems = cart.map((product) => {
       return { price: product.price_id, quantity: product.quantity };
     });
 
-    stripeLoadedPromise.then((stripe) => {
+    stripeLoadedPromise.then((stripe: any) => {
       stripe
         .redirectToCheckout({
           lineItems: lineItems,
@@ -36,16 +48,16 @@ export default function Cart({
           successUrl: "https://solluna.netlify.app/success",
           cancelUrl: "https://solluna.netlify.app/canceled",
         })
-        .then((response) => {
+        .then((response: any) => {
           // this will only log if the redirect did not work
-          console.log(response.error);
+          console.log(response.products);
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // wrong API key? you will see the error message here
           console.log(error);
         });
     });
-  }
+  };
 
   return (
     <div>
@@ -59,8 +71,8 @@ export default function Cart({
           cart.length > 0 &&
           cart.map((product) => {
             return (
-              <div class="cart-items">
-                <div class="image-box">
+              <div className="cart-items" key={product.id}>
+                <div className="image-box">
                   <img
                     src={product.image}
                     className="cart-image"
@@ -69,11 +81,11 @@ export default function Cart({
                     alt={product.name}
                   />
                 </div>
-                <div class="about">
-                  <p class="title">{product.name}</p>
-                  <p class="subtitle">{product.description}</p>
+                <div className="about">
+                  <p className="title">{product.name}</p>
+                  <p className="subtitle">{product.description}</p>
                 </div>
-                <div class="counter">
+                <div className="counter">
                   <button
                     className="btn-counter"
                     disabled={product.quantity === 0}
@@ -81,7 +93,7 @@ export default function Cart({
                   >
                     <FontAwesomeIcon icon={faMinus} size="sm" opacity="0.5" />
                   </button>
-                  <div class="count">{product.quantity}</div>
+                  <div className="count">{product.quantity}</div>
                   <button
                     className="btn-counter"
                     onClick={() => onProductIncrement(product)}
@@ -94,8 +106,8 @@ export default function Cart({
                     />
                   </button>
                 </div>
-                <div class="prices">
-                  <div class="amount">
+                <div className="prices">
+                  <div className="amount">
                     <p>${product.quantity * product.price}</p>
                   </div>
                   <button
@@ -104,7 +116,7 @@ export default function Cart({
                   >
                     <FontAwesomeIcon
                       icon={faTrashAlt}
-                      size="md"
+                      size="lg"
                       opacity="0.5"
                     />
                   </button>
@@ -115,14 +127,14 @@ export default function Cart({
         {(Array.isArray(cart) && cart.length === 0) || (
           <div className="cart-checkout">
             <hr></hr>
-            <div class="checkout">
-              <div class="total">
+            <div className="checkout">
+              <div className="total">
                 <div>
-                  <div class="total">Total</div>
+                  <div className="total">Total</div>
                 </div>
-                <div class="total-amount">${totalCart}</div>
+                <div className="total-amount">${totalCart}</div>
               </div>
-              <button class="button" onClick={handleClick}>
+              <button className="button" onClick={handleClick}>
                 Proceed to pay
               </button>
             </div>
@@ -131,4 +143,5 @@ export default function Cart({
       </div>
     </div>
   );
-}
+};
+export default Cart;

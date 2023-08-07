@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IProduct } from "../interfaces/IProduct";
 
-export default function Product({ product }) {
+export default function Product({ product }: { product: IProduct }) {
   return (
     <div className="product">
       <div className="product-card">

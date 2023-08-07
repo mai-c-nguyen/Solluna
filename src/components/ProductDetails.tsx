@@ -7,33 +7,41 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 import { FirebaseContext } from "../libraries/firebase";
-import ProductDetailInfo from "./ProductDetailInfo.js";
-import ProductDetailIngredients from "./ProductDetailIngredients.js";
-import ProductDetailServings from "./ProductDetailServings.js";
+import ProductDetailInfo from "./ProductDetailInfo";
+import ProductDetailIngredients from "./ProductDetailIngredients";
+import ProductDetailServings from "./ProductDetailServings";
+import { IProduct } from "../interfaces/IProduct";
+import { IProductEmpty } from "../interfaces/IProductEmpty";
 
-export default function ProductDetails(props) {
-  const [product, setProduct] = useState([]);
-  const params = useParams();
+export default function ProductDetails(props: any) {
+  const [product, setProduct] = useState<IProduct>(IProductEmpty);
+  const { id } = useParams<{ id: string }>();
   const match = useRouteMatch();
+
+  const firebaseContext = useContext(FirebaseContext);
+
+  if (!firebaseContext) {
+    throw new Error("FirebaseContext is null");
+  }
 
   const {
     api: { getProduct },
-  } = useContext(FirebaseContext);
+  } = firebaseContext;
 
   useEffect(() => {
     const fetchData = async () => {
-      const product = await getProduct(params.id);
+      const product: IProduct = await getProduct(id);
       setProduct(product);
     };
 
     fetchData();
-  }, [getProduct, params.id]);
+  }, [getProduct, id]);
 
   return (
-    <div class="product-details-layout">
+    <div className="product-details-layout">
       <div>
         <h2>{product.name}</h2>
-        <img src={product.image} class="product-image" alt={product.name} />
+        <img src={product.image} className="product-image" alt={product.name} />
       </div>
       <div>
         <div className="tabs">

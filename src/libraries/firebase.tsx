@@ -1,11 +1,21 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
+import { IProduct } from "../interfaces/IProduct";
+import { IIngredient } from "../interfaces/IIngredient";
 
-const FirebaseContext = createContext(null);
+interface FirebaseType {
+  api: {
+    getProducts: () => Promise<IProduct[]>;
+    getProduct: (id: string) => Promise<IProduct>; // not an array anymore
+    getIngredients: (id: string) => Promise<IIngredient>;
+  };
+}
+
+const FirebaseContext = createContext<FirebaseType | null>(null);
 export { FirebaseContext };
 
-const FirebaseProvider = ({ children }) => {
+const FirebaseProvider = ({ children }: { children: React.ReactNode }) => {
   const firebaseConfig = {
     apiKey: "AIzaSyCBIDZWeES3E6Ovw_KYvuFxYaXyIgJzryU",
     authDomain: "solluna-b1875.firebaseapp.com",
@@ -21,28 +31,45 @@ const FirebaseProvider = ({ children }) => {
   const database = getDatabase(app);
 
   const getProducts = async () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<IProduct[]>((resolve, reject) => {
       const productsRef = ref(database, "products");
       onValue(productsRef, (snapshot) => {
-        resolve(snapshot.val());
+        const data = snapshot.val();
+        if (data) {
+          resolve(data as IProduct[]);
+        } else {
+          reject("No data available");
+        }
       });
     });
   };
 
-  const getProduct = async (id) => {
-    return new Promise((resolve, reject) => {
+  const getProduct = async (id: string) => {
+    // eslint-disable-line
+    return new Promise<IProduct>((resolve, reject) => {
       const productRef = ref(database, "products/" + id);
       onValue(productRef, (snapshot) => {
-        resolve(Object.assign({}, snapshot.val()));
+        const data = snapshot.val();
+        if (data) {
+          resolve(Object.assign({}, data));
+        } else {
+          reject(`Product with id: ${id} not found`);
+        }
       });
     });
   };
 
-  const getIngredients = async (id) => {
-    return new Promise((resolve, reject) => {
+  const getIngredients = async (id: string) => {
+    // eslint-disable-line
+    return new Promise<IIngredient>((resolve, reject) => {
       const ingredientsRef = ref(database, "products/" + id + "/ingredients");
       onValue(ingredientsRef, (snapshot) => {
-        resolve(Object.assign({}, snapshot.val()));
+        const data = snapshot.val();
+        if (data) {
+          resolve(Object.assign({}, data));
+        } else {
+          reject(`Ingredients for product with id: ${id} not found`);
+        }
       });
     });
   };

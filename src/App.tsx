@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar.js";
-import Home from "./components/Home.js";
-import About from "./components/About.js";
-import Products from "./components/Products.js";
-import Cart from "./components/Cart.js";
-import ProductDetails from "./components/ProductDetails.js";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import About from "./components/About";
+import Products from "./components/Products";
+import Cart from "./components/Cart";
+import ProductDetails from "./components/ProductDetails";
+import { IProductInCart } from "./components/Cart";
 
-function App() {
-  const [cart, setCart] = React.useState(function () {
-    let savedCart = [];
-    try {
-      savedCart = JSON.parse(localStorage.getItem("cart"));
-    } catch {
-      console.warn("Could not parse the cart");
+const App = () => {
+  const [cart, setCart] = React.useState<IProductInCart[]>(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      try {
+        return JSON.parse(savedCart);
+      } catch (err) {
+        console.warn("Could not parse the cart");
+      }
     }
-    console.log("savedCArt?", savedCart);
-    return savedCart || [];
+    return [];
   });
 
   useEffect(() => {
@@ -27,12 +29,12 @@ function App() {
 
   console.log("cart in app", cart);
 
-  function handleProductDelete(id) {
+  const handleProductDelete = (id: string) => {
     const updatedCart = cart.filter((product) => product.id !== id);
     setCart(updatedCart);
-  }
+  };
 
-  function handleProductAdd(newProduct) {
+  const handleProductAdd = (newProduct: IProductInCart) => {
     // check if item exists
     const existingProduct = cart.find(
       (product) => product.id === newProduct.id
@@ -60,9 +62,9 @@ function App() {
         },
       ]);
     }
-  }
+  };
 
-  function handleProductIncrement(product) {
+  const handleProductIncrement = (product: IProductInCart) => {
     const exist = cart.find((cartItem) => cartItem.id === product.id);
     if (exist) {
       setCart(
@@ -75,11 +77,13 @@ function App() {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
-  }
+  };
 
-  function handleProductDecrement(product) {
-    const exist = cart.find((cartItem) => cartItem.id === product.id);
-    if (exist.quantity > 0) {
+  const handleProductDecrement = (product: IProductInCart) => {
+    const exist: IProductInCart | undefined = cart?.find(
+      (cartItem: IProductInCart) => cartItem.id === product.id
+    );
+    if (exist?.quantity && exist?.quantity > 0) {
       setCart(
         cart.map((cartItem) =>
           cartItem.id === product.id
@@ -88,7 +92,7 @@ function App() {
         )
       );
     }
-  }
+  };
 
   return (
     <BrowserRouter>
@@ -119,6 +123,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

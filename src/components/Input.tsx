@@ -1,8 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 
-function Input(props) {
-  const { className, placeholder, required, type = "text", ...rest } = props;
+function Input(props: any) {
+  const { className, placeholder, required, type = "text" } = props;
   const classNames = clsx(
     {
       input: true,

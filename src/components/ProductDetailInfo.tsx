@@ -1,8 +1,17 @@
 import React from "react";
-import Button from "./Button.js";
+import Button from "./Button";
 import { useHistory } from "react-router-dom";
+import { IProductInCart } from "./Cart";
+import { IProduct } from "../interfaces/IProduct";
 
-export default function ProductDetailInfo({ product, onProductAdd }) {
+interface IProductDetailInfo {
+  product: IProduct;
+  onProductAdd: (product: IProduct) => void;
+}
+export default function ProductDetailInfo({
+  product,
+  onProductAdd,
+}: IProductDetailInfo) {
   const history = useHistory();
   return (
     <div>
