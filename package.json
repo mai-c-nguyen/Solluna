@@ -54,7 +54,9 @@
     ]
   },
   "devDependencies": {
-    "parcel": "^2.0.0-rc.0"
+    "eslint-plugin-react": "^7.33.1",
+    "parcel": "^2.0.0-rc.0",
+    "eslint": "^8.46.0"
   },
   "main": "index.js",
   "repository": "https://github.com/mai-c-nguyen/Solluna.git",
